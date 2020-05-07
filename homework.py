@@ -9,15 +9,15 @@ def get_status(user_id):
         'user_ids': user_id,
         'v': '5.92',
         'fields': 'online',
-        'access_token': os.getenv('access_token')
+        'access_token': os.getenv('ACCESS_TOKEN')
     }
     status = requests.post('https://api.vk.com/method/users.get', params=params).json()['response'][0]['online']
     return status
 
 
 def sms_sender(sms_text):
-    account_sid = os.getenv('account_sid')
-    auth_token = os.getenv('auth_token')
+    account_sid = os.getenv('ACCOUNT_SID')
+    auth_token = os.getenv('AUTH_TOKEN')
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         to=os.getenv('NUMBER_TO'),
